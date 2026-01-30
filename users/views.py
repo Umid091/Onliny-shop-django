@@ -1,10 +1,3 @@
-from django.shortcuts import render
-
-from django.shortcuts import render, redirect
-from django.views import View
-from django.contrib.auth import login
-from django.contrib import messages
-from .models import CustomUser
 
 from django.shortcuts import render, redirect
 from django.views import View
