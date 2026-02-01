@@ -3,7 +3,7 @@ from django.shortcuts import render, redirect
 from django.views import View
 from django.contrib.auth import authenticate, logout,login
 from django.contrib import messages
-from .models import CustomUser
+from .models import User
 
 
 class RegisterView(View):
@@ -20,11 +20,11 @@ class RegisterView(View):
             messages.error(request, "Parollar mos kelmadi!")
             return render(request, 'auth/register.html')
 
-        if CustomUser.objects.filter(username=username).exists():
+        if User.objects.filter(username=username).exists():
             messages.error(request, "Bu foydalanuvchi nomi band!")
             return render(request, 'auth/register.html')
 
-        user = CustomUser.objects.create_user(
+        user = User.objects.create_user(
             username=username,
             phone=phone,
             password=password,
