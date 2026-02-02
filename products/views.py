@@ -21,3 +21,11 @@ class ProductsView(View):
         product=Product.objects.all()
         return render(request,'products.html',
                       {'products_view':product})
+
+
+class Product_Detail(View):
+    def get(self,request,id):
+        product=Product.objects.get(id=id)
+        return render(request,'product_detail.html',{'product_detail':product})
+
+

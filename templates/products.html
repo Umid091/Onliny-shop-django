@@ -35,7 +35,7 @@
 				<div class="col-md-9 header-left">
 				<div class="top-nav">
 					<ul class="memenu skyblue"><li class="active"><a href="{% url 'index'%}">Bosh sahifa </a></li>
-						<li class="grid"><a href="#">Mahsulotlar</a>
+						<li class="grid"><a href="{% url 'products' %}">Mahsulotlar</a>
 							<div class="mepanel">
 								<div class="row">
 									<div class="col1 me-one">
@@ -121,7 +121,7 @@
 								</div>
 							</div>
 						</li>
-						<li class="grid"><a href="contact.html">Kirish</a>
+						<li class="grid"><a href="{% url 'login' %}">Kirish</a>
 						</li>
 					</ul>
 				</div>
@@ -223,7 +223,7 @@
                     {% for p in products_view %}
 					<div class="col-md-3 product-left">
 						<div class="product-main simpleCart_shelfItem">
-							<a href="single.html" class="mask"><img class="img-responsive zoom-img" style="height: 250px"  src="{{p.main_image.url}}" alt="hig" /></a>
+							<a href="{% url 'product_detail' p.id %}" class="mask"><img class="img-responsive zoom-img" style="height: 250px"  src="{{p.main_image.url}}" alt="hig" /></a>
 							<div class="product-bottom">
 								<h3>{{ p.title}}</h3>
 								<p>Explore Now</p>
