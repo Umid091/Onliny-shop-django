@@ -1,3 +1,4 @@
+from http.cookiejar import request_path
 
 from django.shortcuts import render, redirect
 from django.views import View
@@ -13,8 +14,11 @@ class RegisterView(View):
     def post(self, request):
         username = request.POST.get('username')
         phone = request.POST.get('phone')
+        age=request.POST.get('age')
+        email=request.POST.get('email')
         password = request.POST.get('password')
         confirm_password = request.POST.get('confirm_password')
+        image = request.FILES.get('image')
 
         if password != confirm_password:
             messages.error(request, "Parollar mos kelmadi!")
@@ -28,6 +32,9 @@ class RegisterView(View):
             username=username,
             phone=phone,
             password=password,
+            age=age,
+            email=email,
+            image=image,
         )
 
         login(request, user)
@@ -58,3 +65,14 @@ class LogoutView(View):
     def get(self, request):
         logout(request)
         return redirect('login')
+
+
+
+class ProfileView(View):
+    def get(self, request):
+        if request.user.is_authenticated:
+            return render(request, 'auth/profile.html', {'user_data': request.user})
+        else:
+
+            messages.info(request, "Profilni ko'rish uchun avval ro'yxatdan o'ting!")
+            return redirect('register')
