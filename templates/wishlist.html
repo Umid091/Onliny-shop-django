@@ -1,0 +1,52 @@
+
+{% block content %}
+<style>
+    .wish-container { max-width: 900px; margin: 60px auto; padding: 0 20px; font-family: 'Poppins', sans-serif; }
+    .wish-header { border-bottom: 2px solid #111; padding-bottom: 10px; margin-bottom: 30px; display: flex; justify-content: space-between; align-items: center; }
+    .wish-header h3 { text-transform: uppercase; letter-spacing: 2px; font-weight: 700; margin: 0; }
+
+    .wish-row { display: flex; align-items: center; padding: 15px 0; border-bottom: 1px solid #eee; }
+    .wish-img { width: 80px; height: 80px; object-fit: contain; margin-right: 20px; }
+    .wish-info { flex-grow: 1; }
+    .wish-info h4 { margin: 0; font-size: 1rem; font-weight: 600; color: #111; }
+    .wish-price { color: #d4af37; font-weight: 700; margin-top: 5px; }
+
+    .btn-del { color: #999; text-decoration: none; font-size: 0.8rem; transition: 0.3s; }
+    .btn-del:hover { color: #d10024; }
+
+    .empty-msg { text-align: center; padding: 100px 0; color: #888; }
+    .btn-back { display: inline-block; margin-top: 40px; padding: 12px 30px; background: #111; color: #fff; text-decoration: none; text-transform: uppercase; font-size: 0.8rem; letter-spacing: 1px; }
+    .btn-back:hover { background: #d4af37; }
+</style>
+
+<div class="wish-container">
+    {% if wishlist_items %}
+        <div class="wish-header">
+            <h3>Tanlanganlar</h3>
+            <a href="{% url 'index' %}" style="color: #666; font-size: 0.85rem; text-decoration: none;">← Do'konga qaytish</a>
+        </div>
+
+        {% for item in wishlist_items %}
+            <div class="wish-row">
+                {% if item.product.main_image %}
+                    <img src="{{ item.product.main_image.url }}" class="wish-img">
+                {% endif %}
+
+                <div class="wish-info">
+                    <h4>{{ item.product.name }}</h4>
+                    <div class="wish-price">${{ item.product.price }}</div>
+                </div>
+
+                <a href="{% url 'toggle_wishlist' item.product.id %}" class="btn-del" title="O'chirish">
+                    <i class="fa fa-times"></i> O'chirish
+                </a>
+            </div>
+        {% endfor %}
+    {% else %}
+        <div class="empty-msg">
+            <p>Sizning ro'yxatingiz bo'sh.</p>
+            <a href="{% url 'index' %}" class="btn-back">Xaridni boshlash</a>
+        </div>
+    {% endif %}
+</div>
+{% endblock %}

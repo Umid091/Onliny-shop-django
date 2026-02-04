@@ -81,7 +81,7 @@
 							<div class="header-ctn">
 								<!-- Wishlist -->
 								<div>
-									<a href="#">
+									<a href="{% url 'wishlist_page' %}">
 										<i class="fa fa-heart-o"></i>
 										<span>Your Wishlist</span>
 										<div class="qty">2</div>
@@ -165,6 +165,7 @@
 						<li><a href="{% url 'profile'%}">Profile</a></li>
 						<li><a href="{% url 'login' %}">Kirish</a></li>
 						<li><a href="{% url 'register' %}">Ro'yxatdan o'tish</a></li>
+                        <li><a href="{% url 'logout' %}">logout</a></li>
 
 					</ul>
 					<!-- /NAV -->
@@ -263,10 +264,21 @@
 													<i class="fa fa-star"></i>
 												</div>
 												<div class="product-btns">
-													<button class="add-to-wishlist"><i class="fa fa-heart-o"></i><span class="tooltipp">add to wishlist</span></button>
-													<button class="add-to-compare"><i class="fa fa-exchange"></i><span class="tooltipp">add to compare</span></button>
-													<button class="quick-view"><i class="fa fa-eye"></i><span class="tooltipp">quick view</span></button>
-												</div>
+    <a href="{% url 'toggle_wishlist' product.id %}" class="add-to-wishlist" style="display: inline-block; cursor: pointer;">
+        <i class="fa fa-heart-o"></i>
+        <span class="tooltipp">add to wishlist</span>
+    </a>
+
+    <button class="add-to-compare">
+        <i class="fa fa-exchange"></i>
+        <span class="tooltipp">add to compare</span>
+    </button>
+
+    <button class="quick-view">
+        <i class="fa fa-eye"></i>
+        <span class="tooltipp">quick view</span>
+    </button>
+</div>
 											</div>
 											<div class="add-to-cart">
 												<button class="add-to-cart-btn"><i class="fa fa-shopping-cart"></i> add to cart</button>

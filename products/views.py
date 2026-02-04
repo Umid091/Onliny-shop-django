@@ -26,6 +26,10 @@ class ProductsView(View):
 class Product_Detail(View):
     def get(self,request,id):
         product=Product.objects.get(id=id)
-        return render(request,'product_detail.html',{'product_detail':product})
+        related_product=Product.objects.filter(category=product.category).exclude(id=product.id).order_by('-id')[:3]
+        return render(request,'product_detail.html',{
+            'product_detail':product,
+            'related_product':related_product
+        })
 
 
