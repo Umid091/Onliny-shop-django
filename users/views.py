@@ -1,10 +1,4 @@
-from http.cookiejar import request_path
 
-from django.shortcuts import render, redirect
-from django.views import View
-from django.contrib.auth import authenticate, logout,login
-from django.contrib import messages
-from .models import User
 
 import random
 from django.views import View
